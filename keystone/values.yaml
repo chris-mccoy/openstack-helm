@@ -409,6 +409,74 @@ pod:
             initialDelaySeconds: 50
             periodSeconds: 20
             timeoutSeconds: 5
+  tolerations:
+    api:
+      enabled: false
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+    jobs:
+      bootstrap:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      domain_manage:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      db_init:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      db_sync:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      db_drop:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      rabbit_init:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      fernet_setup:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      fernet_rotate:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      credential_setup:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      credential_rotate:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      credential_cleanup:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+      image_repo_sync:
+        enabled: true
+        tolerations:
+          - key: node-role.kubernetes.io/master
+            operator: Exists
+
 jobs:
   fernet_setup:
     user: keystone

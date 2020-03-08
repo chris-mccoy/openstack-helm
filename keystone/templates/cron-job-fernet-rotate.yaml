@@ -78,6 +78,9 @@ spec:
           restartPolicy: OnFailure
           nodeSelector:
             {{ .Values.labels.job.node_selector_key }}: {{ .Values.labels.job.node_selector_value }}
+{{- if $envAll.Values.pod.tolerations.jobs.fernet_rotate.enabled | default false }}
+{{- tuple $envAll "fernet_rotate" | include "helm-toolkit.snippets.kubernetes_job_tolerations" | indent 10 }}
+{{- end }}
           containers:
             - name: keystone-fernet-rotate
 {{ tuple $envAll "keystone_fernet_rotate" | include "helm-toolkit.snippets.image" | indent 14 }}

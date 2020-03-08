@@ -41,6 +41,9 @@ spec:
       restartPolicy: OnFailure
       nodeSelector:
         {{ .Values.labels.job.node_selector_key }}: {{ .Values.labels.job.node_selector_value }}
+{{- if $envAll.Values.pod.tolerations.jobs.domain_manage.enabled | default false }}
+{{- tuple $envAll "domain_manage" | include "helm-toolkit.snippets.kubernetes_job_tolerations" | indent 6 }}
+{{- end }}
       initContainers:
 {{ tuple $envAll "domain_manage" $mounts_keystone_domain_manage_init | include "helm-toolkit.snippets.kubernetes_entrypoint_init_container"  | indent 8 }}
         - name: keystone-domain-manage-init
